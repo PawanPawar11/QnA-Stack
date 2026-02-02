@@ -8,5 +8,17 @@
 </head>
 <body>
     <?php include("./client/headers.php")?>
+
+    <?php
+        if(isset($_GET['signup'])) {
+            include("./client/signupForm.php");
+        } 
+        else if(isset($_GET['login'])){
+            include("./client/loginForm.php");
+        } 
+        else {
+            echo "<h3 class='text-center mt-5'>Welcome to QnA Stack</h3>";
+        }
+    ?>
 </body>
 </html>

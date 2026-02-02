@@ -1,3 +1,4 @@
-a {
-  color: red !important;
+.navbar-brand img {
+  height: 40px;
+  width: auto;
 }
