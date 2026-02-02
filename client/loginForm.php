@@ -4,20 +4,20 @@
 
             <h3 class="text-center mb-4">Login</h3>
 
-            <form>
+            <form method="POST" action="./server/requestHandler.php">
                 <!-- Email -->
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" placeholder="Enter email">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter email">
                 </div>
 
                 <!-- Password -->
                 <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control" placeholder="Enter password">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
                 </div>
 
-                <button type="submit" class="btn btn-success w-100">
+                <button type="submit" name="login" class="btn btn-success w-100">
                     Login
                 </button>
             </form>

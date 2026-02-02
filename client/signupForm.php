@@ -4,32 +4,32 @@
 
             <h3 class="text-center mb-4">Signup</h3>
 
-            <form>
+            <form method="POST" action="./server/requestHandler.php">
                 <!-- Username -->
                 <div class="mb-3">
-                    <label class="form-label">Username</label>
-                    <input type="text" class="form-control" placeholder="Enter username">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter username">
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" placeholder="Enter email">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter email">
                 </div>
 
                 <!-- Password -->
                 <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control" placeholder="Enter password">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
                 </div>
 
                 <!-- Address -->
                 <div class="mb-3">
-                    <label class="form-label">Address</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter address"></textarea>
+                    <label for="address" class="form-label">Address</label>
+                    <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter address"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">
+                <button type="submit" name="signup" class="btn btn-primary w-100">
                     Sign Up
                 </button>
             </form>
