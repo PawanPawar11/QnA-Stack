@@ -21,6 +21,10 @@
 
         include("./client/loginForm.php");
 
+    } else if (isset($_GET["askQuestion"]) && isset($_SESSION["user"])) {
+
+        include("./client/askQuestion.php");
+
     } else {
 
         echo "<h3 class='text-center mt-5'>Welcome to QnA Stack</h3>";
