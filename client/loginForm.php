@@ -14,7 +14,8 @@
                 <!-- Password -->
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
+                    <input type="password" id="password" name="password" class="form-control"
+                        placeholder="Enter password">
                 </div>
 
                 <button type="submit" name="login" class="btn btn-success w-100">

@@ -13,10 +13,11 @@ if (isset($_POST['signup'])) {
     $result = $user->execute();
 
     if ($result) {
-        echo "User Registered Successfully!";
         $_SESSION["user"] = ["username" => $username, "email" => $email];
+
+        header("location: /QnA%20Stack");
     } else {
-        echo "User Registered Successfully!";
+        echo "User <b>NOT</b> Registered Successfully!";
     }
 }
 

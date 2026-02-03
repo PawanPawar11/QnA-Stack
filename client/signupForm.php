@@ -20,13 +20,15 @@
                 <!-- Password -->
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
+                    <input type="password" id="password" name="password" class="form-control"
+                        placeholder="Enter password">
                 </div>
 
                 <!-- Address -->
                 <div class="mb-3">
                     <label for="address" class="form-label">Address</label>
-                    <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter address"></textarea>
+                    <textarea class="form-control" id="address" name="address" rows="3"
+                        placeholder="Enter address"></textarea>
                 </div>
 
                 <button type="submit" name="signup" class="btn btn-primary w-100">
