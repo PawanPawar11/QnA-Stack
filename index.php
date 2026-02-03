@@ -13,14 +13,20 @@
     session_start();
     include("./client/headers.php");
 
-    if (isset($_GET['signup']) && !$_SESSION["user"]["username"]) {
+    if (isset($_GET['signup']) && !isset($_SESSION["user"])) {
+
         include("./client/signupForm.php");
-    } else if (isset($_GET['login']) && !$_SESSION["user"]["username"]) {
+
+    } else if (isset($_GET['login']) && !isset($_SESSION["user"])) {
+
         include("./client/loginForm.php");
+
     } else {
+
         echo "<h3 class='text-center mt-5'>Welcome to QnA Stack</h3>";
     }
     ?>
 </body>
+
 
 </html>
