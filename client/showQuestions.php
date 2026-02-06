@@ -11,7 +11,8 @@
 
         while ($row = $result->fetch_assoc()) {
 
-            $title = htmlspecialchars(ucfirst($row["title"]));
+            $q_id = $row["id"];
+            $title = htmlspecialchars(string: ucfirst($row["title"]));
             $description = htmlspecialchars(substr($row["description"], 0, 120));
             ?>
             <div class="col-md-6 mb-4">
@@ -26,14 +27,13 @@
                             <?= $description ?>...
                         </p>
 
-                        <a href="#" class="btn btn-outline-primary btn-sm">
+                        <a href="?q-id=<?= $q_id ?>" class="btn btn-outline-primary btn-sm">
                             View Question
                         </a>
 
                     </div>
                 </div>
             </div>
-
         <?php } ?>
 
     </div>
