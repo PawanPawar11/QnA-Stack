@@ -17,7 +17,14 @@ if (isset($_POST['signup'])) {
     $stmt->bind_param("ssss", $username, $email, $password, $address);
 
     if ($stmt->execute()) {
-        $_SESSION["user"] = ["username" => $username, "email" => $email];
+
+        $user_id = $conn->insert_id;
+
+        $_SESSION["user"] = [
+            "id" => $user_id,
+            "username" => $username,
+            "email" => $email
+        ];
 
         header("location: /QnA%20Stack");
         exit;
@@ -35,7 +42,13 @@ if (isset($_POST['signup'])) {
     $user = $result->fetch_assoc();
 
     if ($user && password_verify($password, $user["password"])) {
-        $_SESSION["user"] = $user;
+
+        $_SESSION["user"] = [
+            "id" => $user["id"],
+            "username" => $user["username"],
+            "email" => $user["email"]
+        ];
+
         header("Location:  /QnA%20Stack");
         exit;
     } else {
@@ -46,5 +59,33 @@ if (isset($_POST['signup'])) {
     session_destroy();
     header("Location: /QnA%20Stack");
     exit;
+} else if (isset($_POST["askQuestion"])) {
+
+    if (!isset($_SESSION["user"])) {
+        header("Location: /QnA%20Stack");
+        exit;
+    }
+
+    $title = trim($_POST["title"]);
+    $description = trim($_POST["description"]);
+    $category_id = (int) $_POST["category"];
+    $user_id = (int) $_SESSION["user"]["id"];
+
+    if (empty($title) || empty($description) || empty($category_id)) {
+        echo "All fields are required!";
+        exit;
+    }
+
+    $stmt = $conn->prepare(
+        "INSERT INTO questions (title, description, category_id, user_id) 
+        VALUES (?, ?, ?, ?)"
+    );
+
+    $stmt->bind_param("ssii", $title, $description, $category_id, $user_id);
+
+    if ($stmt->execute()) {
+        header("location: /QnA%20Stack");
+        exit;
+    }
 }
 ?>
