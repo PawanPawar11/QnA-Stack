@@ -27,7 +27,8 @@
 
     } else {
 
-        echo "<h3 class='text-center mt-5'>Welcome to QnA Stack</h3>";
+        include("./client/showQuestions.php");
+
     }
     ?>
 </body>
