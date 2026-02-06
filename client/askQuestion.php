@@ -23,13 +23,7 @@
                 <!-- Category Selector -->
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <select id="category" name="category" class="form-select" required>
-                        <option value="">Select Category</option>
-                        <option value="programming">Programming</option>
-                        <option value="web">Web Development</option>
-                        <option value="database">Database</option>
-                        <option value="networking">Networking</option>
-                    </select>
+                    <?php include("categoryOfQuestion.php") ?>
                 </div>
 
                 <!-- Submit Button -->
