@@ -6,20 +6,23 @@
         <?php
         include("./config/db.php");
 
-        $query = "SELECT * FROM category";
-        $stmt = $conn->prepare($query);
+        $stmt = $conn->prepare("SELECT * FROM category");
         $stmt->execute();
         $result = $stmt->get_result();
 
         while ($row = $result->fetch_assoc()) {
+
             $id = $row["id"];
             $name = htmlspecialchars(ucfirst($row["name"]));
+
             ?>
+
             <div class="mb-2">
-                <a href="?category-id=<?= $id ?>" class="text-decoration-none fw-semibold">
+                <a href="?c-id=<?= $id ?>" class="text-decoration-none fw-semibold">
                     <?= $name ?>
                 </a>
             </div>
+
         <?php } ?>
 
     </div>

@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <?php
     session_start();
     include("./client/headers.php");
@@ -27,7 +28,7 @@
 
     } else if (isset($_GET["q-id"])) {
 
-        $q_id = $_GET["q-id"];
+        $q_id = (int) $_GET["q-id"];
         include("./client/questionDetailsPage.php");
 
     } else {
@@ -36,7 +37,7 @@
 
     }
     ?>
-</body>
 
+</body>
 
 </html>
