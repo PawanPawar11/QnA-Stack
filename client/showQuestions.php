@@ -1,40 +1,52 @@
 <div class="container mt-5">
     <div class="row">
 
-        <?php
-        include("./config/db.php");
+        <!-- LEFT SIDE : QUESTIONS (80%) -->
+        <div class="col-md-9">
+            <div class="row">
 
-        $query = "SELECT * FROM questions";
-        $stmt = $conn->prepare($query);
-        $stmt->execute();
-        $result = $stmt->get_result();
+                <?php
+                include("./config/db.php");
 
-        while ($row = $result->fetch_assoc()) {
+                $query = "SELECT * FROM questions";
+                $stmt = $conn->prepare($query);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-            $q_id = $row["id"];
-            $title = htmlspecialchars(string: ucfirst($row["title"]));
-            $description = htmlspecialchars(substr($row["description"], 0, 120));
-            ?>
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
+                while ($row = $result->fetch_assoc()) {
 
-                        <h5 class="card-title fw-bold">
-                            <?= $title ?>
-                        </h5>
+                    $q_id = $row["id"];
+                    $title = htmlspecialchars(ucfirst($row["title"]));
+                    $description = htmlspecialchars(substr($row["description"], 0, 120));
+                    ?>
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
 
-                        <p class="card-text text-muted">
-                            <?= $description ?>...
-                        </p>
+                                <h5 class="card-title fw-bold">
+                                    <?= $title ?>
+                                </h5>
 
-                        <a href="?q-id=<?= $q_id ?>" class="btn btn-outline-primary btn-sm">
-                            View Question
-                        </a>
+                                <p class="card-text text-muted">
+                                    <?= $description ?>...
+                                </p>
 
+                                <a href="?q-id=<?= $q_id ?>" class="btn btn-outline-primary btn-sm">
+                                    View Question
+                                </a>
+
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
+
             </div>
-        <?php } ?>
+        </div>
+
+        <!-- RIGHT SIDE : CATEGORY (20%) -->
+        <div class="col-md-3">
+            <?php include("./client/showCategoryList.php"); ?>
+        </div>
 
     </div>
 </div>
