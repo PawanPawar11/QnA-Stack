@@ -87,5 +87,32 @@ if (isset($_POST['signup'])) {
         header("location: /QnA%20Stack");
         exit;
     }
+} else if (isset($_POST["answerQuestion"])) {
+
+    if (!isset($_SESSION["user"])) {
+        header("Location: /QnA%20Stack/?login=true");
+        exit;
+    }
+
+    $question_id = (int) $_POST["q_id"];
+    $user_id = (int) $_SESSION["user"]["id"];
+    $answer = trim($_POST["answer"]);
+
+    if (empty($answer)) {
+        echo "Answer is required in order to post!";
+        exit;
+    }
+
+    $stmt = $conn->prepare(
+        "INSERT INTO answers (question_id, user_id, answer) 
+         VALUES (?, ?, ?)"
+    );
+
+    $stmt->bind_param("iis", $question_id, $user_id, $answer);
+
+    if ($stmt->execute()) {
+        header("Location: /QnA%20Stack/?q-id=" . $question_id);
+        exit;
+    }
 }
 ?>

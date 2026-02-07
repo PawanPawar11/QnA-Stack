@@ -26,8 +26,10 @@
         include("./client/askQuestion.php");
 
     } else if (isset($_GET["q-id"])) {
+
         $q_id = $_GET["q-id"];
         include("./client/questionDetailsPage.php");
+
     } else {
 
         include("./client/showQuestions.php");

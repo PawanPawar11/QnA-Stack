@@ -9,6 +9,7 @@
 
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
+    $q_id = $q_id;
 
     if ($row):
 
@@ -41,7 +42,7 @@
                     <textarea name="answer" class="form-control mb-3" rows="4" placeholder="Enter your answer here..."
                         required></textarea>
 
-                    <button type="submit" name="answerQuestion" class="btn btn-primary">
+                    <button type="submit" name="answerQuestion" class="btn btn-primary" <?= !isset($_SESSION["user"]) ? "disabled" : "" ?>>
                         Submit Answer
                     </button>
                 </form>
