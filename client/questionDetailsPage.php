@@ -9,7 +9,6 @@
 
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
-    $q_id = $q_id;
 
     if ($row):
 
@@ -30,6 +29,8 @@
             </div>
         </div>
 
+        <?php include("./client/showAnswers.php"); ?>
+
         <!-- Answer Form -->
         <div class="card shadow-sm">
             <div class="card-body">
@@ -42,7 +43,7 @@
                     <textarea name="answer" class="form-control mb-3" rows="4" placeholder="Enter your answer here..."
                         required></textarea>
 
-                    <button type="submit" name="answerQuestion" class="btn btn-primary" <?= !isset($_SESSION["user"]) ? "disabled" : "" ?>>
+                    <button type="submit" name="answerQuestion" class="btn btn-primary w-100" <?= !isset($_SESSION["user"]) ? "disabled" : "" ?>>
                         Submit Answer
                     </button>
                 </form>
