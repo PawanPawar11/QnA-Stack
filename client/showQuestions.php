@@ -3,12 +3,45 @@
 
         <!-- LEFT SIDE : QUESTIONS -->
         <div class="col-md-9">
+
+            <?php if (isset($_GET["search"]) && !empty($_GET["search"])): ?>
+                <h5 class="mb-4 text-primary">
+                    🔎 Showing results for:
+                    <span class="fw-bold"><?= htmlspecialchars($_GET["search"]) ?></span>
+                </h5>
+            <?php endif; ?>
+
             <div class="row">
 
                 <?php
                 include("./config/db.php");
 
-                if (isset($_GET["u-id"]) && isset($_SESSION["user"])) {
+                if (isset($_GET["search"]) && !empty(trim($_GET["search"]))) {
+
+                    $search = "%" . trim($_GET["search"]) . "%";
+
+                    $stmt = $conn->prepare(
+                        "SELECT 
+                                q.id,
+                                q.title,
+                                q.description,
+                                c.name AS category_name,
+                                u.username,
+                                COUNT(a.id) AS answer_count
+
+                                FROM questions q
+                                JOIN category c ON q.category_id = c.id
+                                JOIN users u ON q.user_id = u.id
+                                LEFT JOIN answers a ON q.id = a.question_id
+
+                                WHERE q.title LIKE ? OR q.description LIKE ?
+                                GROUP BY q.id
+                                ORDER BY q.id DESC"
+                    );
+
+                    $stmt->bind_param("ss", $search, $search);
+
+                } else if (isset($_GET["u-id"]) && isset($_SESSION["user"])) {
 
                     $user_id = (int) $_SESSION["user"]["id"];
 

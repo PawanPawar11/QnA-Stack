@@ -41,6 +41,16 @@
         </li>
 
       </ul>
+
+      <form class="d-flex ms-auto" method="GET" action="">
+        <input class="form-control me-2" type="search" name="search" placeholder="Search questions..."
+          value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
+
+        <button class="btn btn-outline-success" type="submit">
+          Search
+        </button>
+      </form>
+
     </div>
   </div>
 </nav>

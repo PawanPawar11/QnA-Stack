@@ -35,7 +35,15 @@
 
         include("./client/showQuestions.php");
 
+    } else if (isset($_GET["c-id"])) {
+
+        include("./client/showQuestions.php");
+
     } else if (isset($_GET["latestQuestions"])) {
+
+        include("./client/showQuestions.php");
+
+    } else if (isset($_GET["search"])) {
 
         include("./client/showQuestions.php");
 
