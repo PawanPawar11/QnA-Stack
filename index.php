@@ -31,6 +31,14 @@
         $q_id = (int) $_GET["q-id"];
         include("./client/questionDetailsPage.php");
 
+    } else if (isset($_GET["u-id"])) {
+
+        include("./client/showQuestions.php");
+
+    } else if (isset($_GET["latestQuestions"])) {
+
+        include("./client/showQuestions.php");
+
     } else {
 
         include("./client/showQuestions.php");

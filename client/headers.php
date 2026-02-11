@@ -17,6 +17,10 @@
           <li class="nav-item">
             <a class="nav-link" href="?askQuestion=true">Ask A Question</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="?u-id=<?= $_SESSION['user']['id'] ?>">My Questions</a>
+          </li>
         <?php } ?>
 
         <?php if (!isset($_SESSION["user"])) { ?>
@@ -33,7 +37,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Latest Question</a>
+          <a class="nav-link" href="?latestQuestions=true">Latest Questions</a>
         </li>
 
       </ul>

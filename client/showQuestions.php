@@ -8,7 +8,52 @@
                 <?php
                 include("./config/db.php");
 
-                if (isset($_GET["c-id"])) {
+                if (isset($_GET["u-id"]) && isset($_SESSION["user"])) {
+
+                    $user_id = (int) $_SESSION["user"]["id"];
+
+                    $stmt = $conn->prepare(
+                        "SELECT 
+                                q.id,
+                                q.title,
+                                q.description,
+                                c.name AS category_name,
+                                u.username,
+                                COUNT(a.id) AS answer_count
+
+                                FROM questions q
+                                JOIN category c ON q.category_id = c.id
+                                JOIN users u ON q.user_id = u.id
+                                LEFT JOIN answers a ON q.id = a.question_id
+
+                                WHERE q.user_id = ?
+                                GROUP BY q.id
+                                ORDER BY q.id DESC"
+                    );
+
+                    $stmt->bind_param("i", $user_id);
+
+                } else if (isset($_GET["latestQuestions"])) {
+
+                    $stmt = $conn->prepare(
+                        "SELECT 
+                                q.id,
+                                q.title,
+                                q.description,
+                                c.name AS category_name,
+                                u.username,
+                                COUNT(a.id) AS answer_count
+
+                                FROM questions q
+                                JOIN category c ON q.category_id = c.id
+                                JOIN users u ON q.user_id = u.id
+                                LEFT JOIN answers a ON q.id = a.question_id
+
+                                GROUP BY q.id
+                                ORDER BY q.id DESC"
+                    );
+
+                } else if (isset($_GET["c-id"])) {
 
                     $category_id = (int) $_GET["c-id"];
 
@@ -52,7 +97,6 @@
                                 GROUP BY q.id
                                 ORDER BY q.id DESC"
                     );
-
                 }
 
                 $stmt->execute();
