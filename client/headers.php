@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><img src="./public/logo.png" alt="logo"></a>
+    <a class="navbar-brand" href="./"><img src="./public/logo.png" alt="logo"></a>
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
@@ -11,7 +11,8 @@
 
         <?php if (isset($_SESSION["user"])) { ?>
           <li class="nav-item">
-            <a class="nav-link" href="./server/requestHandler.php?logout=true">Logout</a>
+            <a class="nav-link" href="./server/requestHandler.php?logout=true">Logout
+              (<?= $_SESSION["user"]["username"] ?>)</a>
           </li>
 
           <li class="nav-item">
@@ -31,10 +32,6 @@
             <a class="nav-link" href="?login=true">Login</a>
           </li>
         <?php } ?>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Category</a>
-        </li>
 
         <li class="nav-item">
           <a class="nav-link" href="?latestQuestions=true">Latest Questions</a>
