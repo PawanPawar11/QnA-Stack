@@ -167,9 +167,26 @@
 
                                 </div>
 
-                                <a href="?q-id=<?= $q_id ?>" class="btn btn-outline-primary btn-sm">
-                                    View Question
-                                </a>
+                                <div class="d-flex gap-2">
+
+                                    <a href="?q-id=<?= $q_id ?>" class="btn btn-outline-primary btn-sm">
+                                        View Question
+                                    </a>
+
+                                    <?php if (isset($_GET["u-id"]) && isset($_SESSION["user"])): ?>
+                                        <form method="POST" action="./server/requestHandler.php"
+                                            onsubmit="return confirm('Delete this question?');">
+
+                                            <input type="hidden" name="deleteQuestion" value="1">
+                                            <input type="hidden" name="q_id" value="<?= $q_id ?>">
+
+                                            <button class="btn btn-outline-danger btn-sm">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    <?php endif; ?>
+
+                                </div>
 
                             </div>
                         </div>

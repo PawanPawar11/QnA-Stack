@@ -114,5 +114,28 @@ if (isset($_POST['signup'])) {
         header("Location: /QnA%20Stack/?q-id=" . $question_id);
         exit;
     }
+} else if (isset($_POST["deleteQuestion"])) {
+
+    if (!isset($_SESSION["user"])) {
+        header("Location: /QnA%20Stack/?login=true");
+        exit;
+    }
+
+    $question_id = (int) $_POST["q_id"];
+    $user_id = (int) $_SESSION["user"]["id"];
+
+    $stmt = $conn->prepare(
+        "DELETE FROM questions 
+         WHERE id = ? AND user_id = ?"
+    );
+
+    $stmt->bind_param("ii", $question_id, $user_id);
+
+    if ($stmt->execute()) {
+
+        header("Location: /QnA%20Stack/?u-id=" . $user_id);
+        exit;
+    }
 }
+
 ?>
